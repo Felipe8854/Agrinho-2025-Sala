@@ -1,1 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+      <h1 class="title">Hello World! </h1>
+      <p id="currentTime"></p>
+      <script src="script.js"></script>
+  </body>
+</html><!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campo e Cidade</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .content {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .content .card {
+            width: 45%;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .content .card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .content .card input[type="file"] {
+            margin-top: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Campo e Cidade</h1>
+        <p>Uma viagem entre a natureza e a modernidade</p>
+    </header>
+
+    <nav>
+        <a href="#campo">Campo</a>
+        <a href="#cidade">Cidade</a>
+        <a href="#sobre">Sobre</a>
+    </nav>
+
+    <div class="content">
+        <div class="card" id="campo">
+            <h2>Vida no Campo</h2>
+            <img id="campo-img" src="https://via.placeholder.com/400x250?text=Campo" alt="Campo">
+            <p>Descubra a tranquilidade e o charme do interior. O campo oferece contato direto com a natureza e uma vida mais tranquila.</p>
+            <input type="file" accept="image/*" onchange="changeImage('campo')">
+        </div>
+
+        <div class="card" id="cidade">
+            <h2>Vida na Cidade</h2>
+            <img id="cidade-img" src="https://via.placeholder.com/400x250?text=Cidade" alt="Cidade">
+            <p>A cidade é o centro da cultura, da arte e das oportunidades. Conheça a energia urbana e a diversidade de um ambiente vibrante.</p>
+            <input type="file" accept="image/*" onchange="changeImage('cidade')">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Campo e Cidade - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        function changeImage(section) {
+            const fileInput = document.querySelector(`#${section} input[type="file"]`);
+            const imgElement = document.querySelector(`#${section}-img`);
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imgElement.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+
+</body>
+</html>
 
