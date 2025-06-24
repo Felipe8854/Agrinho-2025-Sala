@@ -108,10 +108,13 @@
       const fileInput = document.querySelector(`#${section} input[type="file"]`);
       const imgElement = document.querySelector(`#${section}-img`);
       const file = fileInput.files[0];
+      
       if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
+          // Atualiza a imagem na tela
           imgElement.src = e.target.result;
+          // Salva a imagem em base64 no localStorage
           localStorage.setItem(`${section}-img`, e.target.result);
         };
         reader.readAsDataURL(file);
@@ -119,6 +122,7 @@
     }
 
     window.addEventListener("DOMContentLoaded", () => {
+      // Recupera as imagens salvas no localStorage e exibe
       ['campo', 'cidade'].forEach(section => {
         const savedImage = localStorage.getItem(`${section}-img`);
         if (savedImage) {
