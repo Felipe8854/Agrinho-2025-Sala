@@ -5,56 +5,135 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Campo e Cidade</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+    /* Resetando margens e padding */
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
     }
 
     header {
       background: #4CAF50;
       color: white;
       text-align: center;
-      padding: 10px;
+      padding: 30px;
+      border-bottom: 5px solid #333;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
     }
 
     .editable {
       cursor: pointer;
       border-bottom: 1px dashed #4CAF50;
+      transition: all 0.3s ease;
     }
 
-    .content, .info-section {
+    .editable:hover {
+      color: #4CAF50;
+      border-bottom: 1px solid #4CAF50;
+    }
+
+    .content {
       display: flex;
       justify-content: space-between;
-      padding: 20px;
-      gap: 20px;
+      padding: 40px 20px;
+      gap: 30px;
+      flex-wrap: wrap;
     }
 
     .card, .info-box {
       width: 45%;
-      padding: 20px;
+      padding: 25px;
       background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       text-align: center;
+      overflow: hidden;
     }
 
-    .info-box {
-      text-align: justify;
+    .card:hover, .info-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
     }
 
-    img {
+    .card img {
       width: 100%;
-      border-radius: 8px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .card img:hover {
+      transform: scale(1.05);
+    }
+
+    .info-box h3 {
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+      color: #4CAF50;
+    }
+
+    .info-box p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
     }
 
     footer {
       text-align: center;
-      padding: 10px;
+      padding: 20px;
       background-color: #333;
       color: white;
+      margin-top: 50px;
     }
+
+    footer p {
+      font-size: 1rem;
+    }
+
+    input[type="file"] {
+      margin-top: 15px;
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    input[type="file"]:hover {
+      background-color: #45a049;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+
+      .card, .info-box {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -68,7 +147,9 @@
     <div class="card" id="campo">
       <img id="campo-img" src="https://via.placeholder.com/400x250?text=Campo" alt="Campo" />
       <p id="campo-text" class="editable" onclick="editText('campo-text')">
-        O campo representa a tranquilidade, o contato com a natureza e um estilo de vida mais simples e calmo.
+        O campo é muito mais do que apenas um lugar distante da agitação da cidade. É um ambiente onde a natureza se manifesta em sua forma mais pura. A tranquilidade é uma das maiores riquezas desse espaço, e sua conexão com a terra permite uma vida mais simples e introspectiva. 
+        A vida no campo promove um estilo de vida mais saudável, com ar puro, contato constante com o verde e a prática de atividades ao ar livre. Além disso, as pessoas que vivem no campo costumam ter um ritmo mais lento, onde as preocupações com o estresse e com a pressão social são menores. 
+        No entanto, essa vida também apresenta desafios, como a dependência de uma economia agrícola, a distância de centros urbanos para serviços essenciais e, por vezes, uma infraestrutura limitada. A vida no campo é, sem dúvida, um retorno às origens e um convite à paz de espírito.
       </p>
       <input type="file" accept="image/*" onchange="changeImage('campo')" />
     </div>
@@ -76,7 +157,9 @@
     <div class="card" id="cidade">
       <img id="cidade-img" src="https://via.placeholder.com/400x250?text=Cidade" alt="Cidade" />
       <p id="cidade-text" class="editable" onclick="editText('cidade-text')">
-        A cidade é símbolo de progresso, diversidade e movimento constante, com acesso à cultura, tecnologia e oportunidades.
+        A cidade é o centro da modernidade, da inovação e da diversidade. Ao contrário do campo, que transmite tranquilidade, a cidade é um espaço dinâmico e sempre em movimento, onde novas oportunidades surgem a todo momento. 
+        A infraestrutura avançada das cidades proporciona acesso a uma ampla gama de serviços, como hospitais, escolas, transporte público, cultura, lazer e emprego. Além disso, a diversidade cultural e social das cidades cria um ambiente vibrante, onde diferentes estilos de vida se encontram e se misturam.
+        No entanto, viver na cidade pode ser desafiador. O ritmo acelerado, o estresse do cotidiano e a poluição são apenas alguns dos aspectos que podem prejudicar o bem-estar das pessoas. A vida urbana também pode ser impessoal, e as relações interpessoais nem sempre são tão profundas quanto aquelas no campo. Mesmo assim, as cidades oferecem uma vida repleta de possibilidades, para quem busca crescimento e novas experiências.
       </p>
       <input type="file" accept="image/*" onchange="changeImage('cidade')" />
     </div>
@@ -86,13 +169,16 @@
     <div class="info-box">
       <h3 id="campo-info-title" class="editable" onclick="editText('campo-info-title')">Sobre o Campo</h3>
       <p id="campo-info-text" class="editable" onclick="editText('campo-info-text')">
-        A vida no campo é marcada por paisagens naturais, rotinas mais calmas e contato direto com a terra. É um ambiente onde predominam atividades agrícolas, ar puro e uma forte ligação com a natureza.
+        A vida no campo é marcada por paisagens naturais, rotinas mais calmas e contato direto com a terra. Ao acordar, os sons da natureza substituem o barulho das ruas e o ar fresco da manhã é uma das maiores benesses de quem vive nesse ambiente.
+        Além disso, a conexão com a agricultura e o cuidado com a terra são pilares da vida rural. Muitos campos ainda mantêm atividades como plantio e colheita, o que proporciona uma sensação de pertencimento à natureza. O campo também é o lar de diversas atividades culturais tradicionais, como festas de colheita, rodeios e feiras, onde a comunidade se reúne para celebrar a vida simples e tranquila.
       </p>
     </div>
     <div class="info-box">
       <h3 id="cidade-info-title" class="editable" onclick="editText('cidade-info-title')">Sobre a Cidade</h3>
       <p id="cidade-info-text" class="editable" onclick="editText('cidade-info-text')">
-        Já nas cidades, encontramos dinamismo, infraestrutura avançada e uma grande concentração de pessoas. Elas oferecem uma variedade de serviços, empregos, educação e lazer.
+        Nas cidades, encontramos uma vida frenética e cheia de estímulos. A cidade é o coração da economia, da cultura e das inovações tecnológicas. A arquitetura moderna, os centros comerciais, as opções de entretenimento e a variedade de serviços tornam a vida urbana muito mais dinâmica.
+        A grande diversidade de pessoas que vivem na cidade contribui para um ambiente cosmopolita e multicultural. Você pode encontrar pessoas de diferentes partes do mundo, com tradições, gastronomias e histórias únicas. Contudo, o alto custo de vida, a falta de espaços verdes e o ritmo acelerado podem ser aspectos negativos que impactam a qualidade de vida na cidade.
+        Mesmo com seus desafios, a cidade continua a ser o centro de oportunidades e crescimento, tanto no âmbito profissional quanto no pessoal.
       </p>
     </div>
   </div>
@@ -139,6 +225,5 @@
       }
     }
   </script>
-
 </body>
 </html>
