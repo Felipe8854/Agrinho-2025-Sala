@@ -145,7 +145,9 @@
 
   <div class="content">
     <div class="card" id="campo">
-      <img id="campo-img" src="https://via.placeholder.com/400x250?text=Campo" alt="Campo" />
+      <div id="campo-img-wrapper">
+        <img id="campo-img" src="https://via.placeholder.com/400x250?text=Campo" alt="Campo" />
+      </div>
       <p id="campo-text" class="editable" onclick="editText('campo-text')">
         O campo é muito mais do que apenas um lugar distante da agitação da cidade. É um ambiente onde a natureza se manifesta em sua forma mais pura. A tranquilidade é uma das maiores riquezas desse espaço, e sua conexão com a terra permite uma vida mais simples e introspectiva. 
         A vida no campo promove um estilo de vida mais saudável, com ar puro, contato constante com o verde e a prática de atividades ao ar livre. Além disso, as pessoas que vivem no campo costumam ter um ritmo mais lento, onde as preocupações com o estresse e com a pressão social são menores. 
@@ -155,7 +157,9 @@
     </div>
 
     <div class="card" id="cidade">
-      <img id="cidade-img" src="https://via.placeholder.com/400x250?text=Cidade" alt="Cidade" />
+      <div id="cidade-img-wrapper">
+        <img id="cidade-img" src="https://via.placeholder.com/400x250?text=Cidade" alt="Cidade" />
+      </div>
       <p id="cidade-text" class="editable" onclick="editText('cidade-text')">
         A cidade é o centro da modernidade, da inovação e da diversidade. Ao contrário do campo, que transmite tranquilidade, a cidade é um espaço dinâmico e sempre em movimento, onde novas oportunidades surgem a todo momento. 
         A infraestrutura avançada das cidades proporciona acesso a uma ampla gama de serviços, como hospitais, escolas, transporte público, cultura, lazer e emprego. Além disso, a diversidade cultural e social das cidades cria um ambiente vibrante, onde diferentes estilos de vida se encontram e se misturam.
@@ -198,21 +202,24 @@
       if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
+          const base64Image = e.target.result;
           // Atualiza a imagem na tela
-          imgElement.src = e.target.result;
-          // Salva a imagem em base64 no localStorage
-          localStorage.setItem(`${section}-img`, e.target.result);
+          imgElement.src = base64Image;
+          // Atualiza a imagem no HTML com a string Base64
+          const imgElementHtml = `<img src="${base64Image}" alt="${section}" />`;
+          document.querySelector(`#${section}-img-wrapper`).innerHTML = imgElementHtml;
         };
         reader.readAsDataURL(file);
       }
     }
 
     window.addEventListener("DOMContentLoaded", () => {
-      // Recupera as imagens salvas no localStorage e exibe
+      // Recupera a imagem em Base64 e exibe
       ['campo', 'cidade'].forEach(section => {
         const savedImage = localStorage.getItem(`${section}-img`);
         if (savedImage) {
-          document.getElementById(`${section}-img`).src = savedImage;
+          const imgElementHtml = `<img src="${savedImage}" alt="${section}" />`;
+          document.querySelector(`#${section}-img-wrapper`).innerHTML = imgElementHtml;
         }
       });
     });
